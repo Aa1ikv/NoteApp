@@ -7,7 +7,7 @@
     android:background="#252525"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context="fragments.onboard.OnBoardPagingFragment">
+    tools:context=".ui.fragments.onboard.OnBoardPagingFragment">
     <TextView
         android:id="@+id/txt_notes"
         android:layout_marginTop="76dp"
@@ -33,7 +33,6 @@
         app:lottie_rawRes="@raw/first"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"/>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="280dp"
         android:layout_height="125dp"
