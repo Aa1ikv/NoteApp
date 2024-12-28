@@ -1,3 +1,4 @@
+package com.example.noteapp.ui.fragments.onboard
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,21 +9,19 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.noteapp.R
 import com.example.noteapp.databinding.FragmentOnBoardBinding
-import com.example.noteapp.ui.adapter.OnBoardPagerAdapter
-import com.example.noteapp.utils.PreferenceHelper
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
+import com.example.noteapp.ui.adapters.OnBoardViewpagerAdapter
+import com.example.noteapp.utlis.PreferenceHelper
 
 
 class OnBoardFragment : Fragment() {
-
     private lateinit var binding: FragmentOnBoardBinding
     private lateinit var sharedPreferences: PreferenceHelper
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = FragmentOnBoardBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -30,22 +29,23 @@ class OnBoardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         sharedPreferences = PreferenceHelper()
-        sharedPreferences.init(requireContext())
+        sharedPreferences.unit(requireContext())
 
-        if (sharedPreferences.isOnBoardingCompleted()) {
+        if (sharedPreferences.isOnBoardShown) {
             findNavController().navigate(R.id.action_onBoardFragment_to_noteFragment)
         } else {
             initialize()
-            setupListener()
-            dotsIndicator()
+            setupListeners()
         }
     }
 
+
     private fun initialize() {
-        binding.viewpanger2.adapter = OnBoardPagerAdapter(this)
+        binding.viewpager2.adapter = OnBoardViewpagerAdapter(this)
+        binding.dots1.attachTo(binding.viewpager2)
     }
 
-    private fun setupListener() = with(binding.viewpanger2) {
+    private fun setupListeners() = with(binding.viewpager2) {
         registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -64,30 +64,9 @@ class OnBoardFragment : Fragment() {
             }
         })
         binding.btnStart.setOnClickListener {
-            sharedPreferences.setOnBoardingCompleted(true)
+            sharedPreferences.isOnBoardShown = true
             findNavController().navigate(R.id.action_onBoardFragment_to_noteFragment)
-        }
-    }
 
-    private fun dotsIndicator() = with(binding.viewpanger2) {
-        TabLayoutMediator(binding.tabLayout, binding.viewpanger2) { tab, position -> }.attach()
-        registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                updateDotsIndicator(binding.tabLayout, position)
-            }
-        })
-        updateDotsIndicator(binding.tabLayout, 0)
-    }
-
-    private fun updateDotsIndicator(tabLayout: TabLayout, selectedPosition: Int) {
-        for (i in 0 until tabLayout.tabCount) {
-            val tab = tabLayout.getTabAt(i)
-            if (i == selectedPosition) {
-                tab?.setIcon(R.drawable.indicator)
-            } else {
-                tab?.setIcon(R.drawable.indicator2)
-            }
         }
     }
 }

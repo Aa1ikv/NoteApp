@@ -1,23 +1,22 @@
-package com.example.noteapp.utils
+
+package com.example.noteapp.utlis
 
 import android.content.Context
 import android.content.SharedPreferences
 
 class PreferenceHelper {
-    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var sharedPref: SharedPreferences
 
-    fun init(context: Context) {
-        sharedPreferences = context.getSharedPreferences("shared", Context.MODE_PRIVATE)
-    }
-    var text: Boolean
-        get() = sharedPreferences.getBoolean("text", false)
-        set(value) = sharedPreferences.edit().putBoolean("text", value).apply()
+    fun unit(context: Context) {
+        sharedPref = context.getSharedPreferences("shared", Context.MODE_PRIVATE)
 
-    fun setOnBoardingCompleted(b: Boolean) {
-        sharedPreferences.edit().putBoolean("onBoardingCompleted", text).apply()
     }
+    var text : String?
+        get() = sharedPref.getString("text", "")
+        set(value) = sharedPref.edit().putString("text", value).apply()
 
-    fun isOnBoardingCompleted(): Boolean {
-        return sharedPreferences.getBoolean("onBoardingCompleted", false)
-    }
+    var isOnBoardShown: Boolean
+        get() = sharedPref.getBoolean("isShown", false)
+        set(value) = sharedPref.edit().putBoolean("isShown", value).apply()
+
 }
