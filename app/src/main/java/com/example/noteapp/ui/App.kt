@@ -3,31 +3,32 @@ package com.example.noteapp
 import android.app.Application
 import androidx.room.Room
 import com.example.noteapp.data.db.AppDataBase
-import com.example.noteapp.utils.PreferenceHelper
+import com.example.noteapp.utlis.PreferenceHelper
 
-class App: Application() {
-
-    companion object{
-        var appDataBase: AppDataBase? = null
+class App : Application() {
+    companion object {
+        var appDatabase: AppDataBase? = null
     }
-
     override fun onCreate() {
         super.onCreate()
         val sharedPreferences = PreferenceHelper()
-        sharedPreferences.init(this)
+        sharedPreferences.unit(this)
         getInstance()
     }
 
     private fun getInstance(): AppDataBase? {
-        if (appDataBase == null) {
-            appDataBase = applicationContext?.let { context ->
+        if (appDatabase == null) {
+            appDatabase = applicationContext?.let { context ->
                 Room.databaseBuilder(
                     context,
                     AppDataBase::class.java,
                     "note.database"
-                ).fallbackToDestructiveMigration().allowMainThreadQueries().build()
+                ).fallbackToDestructiveMigration()
+                    .allowMainThreadQueries()
+                    .build()
+
             }
         }
-        return appDataBase
+        return appDatabase
     }
 }

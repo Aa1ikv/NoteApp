@@ -1,4 +1,3 @@
-
 package com.example.noteapp.ui.fragments.onboard
 
 import android.os.Bundle

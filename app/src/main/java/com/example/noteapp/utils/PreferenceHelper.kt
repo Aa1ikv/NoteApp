@@ -18,5 +18,4 @@ class PreferenceHelper {
     var isOnBoardShown: Boolean
         get() = sharedPref.getBoolean("isShown", false)
         set(value) = sharedPref.edit().putBoolean("isShown", value).apply()
-
 }

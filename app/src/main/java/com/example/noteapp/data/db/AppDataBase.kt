@@ -9,5 +9,4 @@ import com.example.noteapp.data.models.NoteModel
 @Database(entities = [NoteModel::class], version = 2)
 abstract class AppDataBase: RoomDatabase() {
     abstract fun noteDao(): NoteDao
-
 }
