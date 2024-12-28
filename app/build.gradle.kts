@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -40,6 +41,7 @@ android {
 
 dependencies {
 
+    implementation(libs.firebase.auth)
     var lottieVersion = "3.4.0"
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -50,10 +52,14 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation ("com.airbnb.android:lottie:$lottieVersion")
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+    implementation("com.google.firebase:firebase-analytics")
 
     val nav_version = "2.8.4"
 
     implementation("androidx.navigation:navigation-fragment:$nav_version")
     implementation("androidx.navigation:navigation-ui:$nav_version")
     implementation("com.tbuonomo:dotsindicator:5.1.0")
+    implementation("com.google.android.gms:play-services-auth:21.3.0")
+
 }

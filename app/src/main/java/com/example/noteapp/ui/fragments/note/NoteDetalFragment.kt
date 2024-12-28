@@ -1,4 +1,3 @@
-
 package com.example.noteapp.ui.fragments.note
 
 import android.os.Bundle
@@ -14,13 +13,13 @@ import androidx.navigation.fragment.findNavController
 import com.example.noteapp.App
 import com.example.noteapp.R
 import com.example.noteapp.data.models.NoteModel
-import com.example.noteapp.databinding.FragmentNoteDetail2Binding
+import com.example.noteapp.databinding.FragmentNoteDetailBinding
 import java.text.SimpleDateFormat
 import java.util.Date
 
 class NoteDetailFragment : Fragment() {
 
-    private lateinit var binding: FragmentNoteDetail2Binding
+    private lateinit var binding: FragmentNoteDetailBinding
     private var noteId: Int? = null
     private var color: Int? = null
 
@@ -29,7 +28,7 @@ class NoteDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentNoteDetail2Binding.inflate(inflater, container, false)
+        binding = FragmentNoteDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 

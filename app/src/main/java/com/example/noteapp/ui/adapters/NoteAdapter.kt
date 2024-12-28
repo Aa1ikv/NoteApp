@@ -1,3 +1,4 @@
+
 package com.example.noteapp.ui.adapters
 
 import android.view.LayoutInflater
@@ -47,5 +48,4 @@ class NoteAdapter(
             return oldItem == newItem
         }
     }
-
 }

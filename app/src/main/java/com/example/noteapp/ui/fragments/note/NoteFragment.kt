@@ -1,4 +1,3 @@
-
 package com.example.noteapp.ui.fragments.note
 
 import android.app.AlertDialog
@@ -12,21 +11,21 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.noteapp.App
 import com.example.noteapp.R
 import com.example.noteapp.data.models.NoteModel
-import com.example.noteapp.databinding.FragmentNote2Binding
+import com.example.noteapp.databinding.FragmentNoteBinding
 import com.example.noteapp.ui.adapters.NoteAdapter
 import com.example.noteapp.ui.interfaces.OnClickItem
 
 
 class NoteFragment : Fragment(), OnClickItem {
 
-    private lateinit var binding: FragmentNote2Binding
+    private lateinit var binding: FragmentNoteBinding
     private val noteAdapter = NoteAdapter(this, this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View{
-        binding = FragmentNote2Binding.inflate(inflater, container, false)
+        binding = FragmentNoteBinding.inflate(inflater, container, false)
         return binding.root
     }
 
